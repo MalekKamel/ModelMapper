@@ -46,12 +46,12 @@ class MainActivity: Activity() {
         // map [UserDto]? to [User]
         // produces empty array as the array is null
         var users: List<User> = NullableInputListMapper(UserMapper()).map(input)
-        // logs 0
+        // prints 0
         log("users.count: ${users.count()}")
 
         input = listOf(userDto, userDto)
         users = NullableInputListMapper(UserMapper()).map(input)
-        // logs 2
+        // prints 2
         log("users.count: ${users.count()}")
     }
 
@@ -61,12 +61,12 @@ class MainActivity: Activity() {
 
         var input: List<UserDto> = emptyList()
         var users: List<User>? = NullableOutputListMapper(UserMapper()).map(input)
-        // logs 0 cause it's null
+        // prints 0 cause it's null
         log("users.count: ${users?.count() ?: 0}), it's null")
 
         input = listOf(userDto, userDto)
         users = NullableInputListMapper(UserMapper()).map(input)
-        // logs 2
+        // prints 2
         log("users.count: ${users.count()})")
     }
 
@@ -78,21 +78,19 @@ class MainActivity: Activity() {
         // map [UserDto]? to [User]
         // produces empty array as the array is null
         var users: List<User>? = NullableListMapper(UserMapper()).map(input)
-        // logs 0
+        // prints 0
         log("users.count: ${users?.count() ?: 0}, the input is null")
 
         input = emptyList()
         users = NullableListMapper(UserMapper()).map(input)
-        // logs 0
+        // prints 0
         log("users.count: ${users?.count() ?: 0}, the input is empty")
 
         input = listOf(userDto, userDto)
         users = NullableListMapper (UserMapper()).map(input)
-        // logs 2
+        // prints 2
         log("users.count: ${users?.count() ?: 0}")
     }
     
-    private fun log(message: String) {
-        Log.i("ModelMapper", message)
-    }
+    private fun log(message: String) = Log.i("ModelMapper", message)
 }
