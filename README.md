@@ -1,9 +1,35 @@
 ModelMapper
 ================
+An abstraction for mapping models, write a mapper once, use everywhere.
+
+It's a best practice, like in clean architecture, to create a model for reach domain, for example a DTO for network response, Entity for database, and so on. But mapping each model is something painful as you have to map objects, arrays and deal with optionals. Here's where **ModelMapper** shines, just create a single mapper for the object and use it to map objects, Arrays, and optional Arrays.
 
 # Usage
 
 ``` kotlin
+// Declare mapper
+class UserMapper: Mapper<UserDto, User> {
+    override fun map(input: UserDto): User = User(name = input.name, email = input.email)
+}
+
+// map UserDto to User
+val user: User = UserMapper().map(userDto)
+
+// map List<UserDto> to List<User>
+val input: List<UserDto> = listOf(userDto, userDto)
+val users: List<User> = ListMapper(UserMapper()).map(input)
+
+// map List<UserDto>? to List<User>
+val input: List<UserDto>? = null
+val users: List<User> = NullableInputListMapper(UserMapper()).map(input)
+
+// map List<UserDto> to List<User>?
+val input: List<UserDto> = emptyList()
+val users: List<User>? = NullableOutputListMapper(UserMapper()).map(input)
+
+// map List<UserDto>? to List<User>?
+var input: List<UserDto>? = null
+val users = NullableListMapper(UserMapper()).map(input)
 
 ```
 
