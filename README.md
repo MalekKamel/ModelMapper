@@ -2,7 +2,7 @@ ModelMapper
 ================
 An abstraction for mapping models, write a mapper once, use everywhere.
 
-It's a best practice, like in clean architecture, to create a model for reach domain, for example a DTO for network response, Entity for database, and so on. But mapping each model is something painful as you have to map objects, lists and deal with optionals. Here's where **ModelMapper** shines, just create a single mapper for the object and use it to map objects, Lists, and optional Lists.
+It's a best practice, like in clean architecture, to create a model for reach domain, for example a DTO for network response, Entity for database, and so on. But mapping each model is something painful as you have to map objects, lists and deal with nullables. Here's where **ModelMapper** shines, just create a single mapper for the object and use it to map objects, Lists, and nullable Lists.
 
 # Usage
 
