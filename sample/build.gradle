@@ -1,0 +1,40 @@
+apply plugin: Plugins.androidApplication
+apply from: "$rootDir/${GradleName.common}"
+
+android {
+
+    signingConfigs {
+        config {
+            keyAlias 'sha'
+            keyPassword '123456sh@b@n'
+            storeFile file('keystores/config.jks')
+            storePassword '123456sh@b@n'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.modelmapper.sample"
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            useProguard false
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+
+        debug {
+            signingConfig signingConfigs.config
+            testCoverageEnabled true
+        }
+
+    }
+}
+
+dependencies {
+    implementation project(':lib')
+    api Deps.androidx_constraintLayout
+}
